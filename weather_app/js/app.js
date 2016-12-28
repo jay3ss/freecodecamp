@@ -62,11 +62,6 @@ function displayWeather(weather) {
             weather_display += "<div class=\"flake\"></div>";
             weather_display += "<div class=\"flake\"></div>";
             weather_display += "</div></div>";
-        } else if (weather === "Mist") {
-            weather_display =  "<div class=\"icon sunny\">";
-            weather_display += "<div class=\"sun\">";
-            weather_display += "<div class=\"rays\">";
-            weather_display += "</div></div>";
         } else if (weather === "Rain" || weather === "Mist") {
             weather_display =  "<div class=\"icon rainy\">";
             weather_display += "<div class=\"cloud\"><div class=\"rain\">";
