@@ -33,14 +33,10 @@ function buildUrl(location) {
     var lng = location.longitude;
     var url = "http://api.openweathermap.org/data/2.5/weather?";
     url += "lat=" + lat + "&lon=" + lng + "&appid=" + API_KEY;
-    console.log(url);
 
     var icon = "";
 
     $.getJSON(url, function(json) {
-        console.log(json.weather[0].icon);
-        // console.log(json.main.temp);
-        // console.log(json.weather.main);
         $("#temperature").html(
             parseFloat(json.main.temp - 273.15).toPrecision(3)
         );
@@ -84,10 +80,36 @@ function displayWeather(weather) {
     $(".weather-display").append(weather_display);
 }
 
+function convertTemp() {
+    var system = $("#system").text();
+    var temperature = $("#temperature").text();
+
+    if (temperature !== "") {
+        temperature = 1.0 * temperature;
+
+         if (system === "C") {
+            //  Convert to F
+             temperature = (9/5 * temperature + 32).toPrecision(3);
+             system = "F";
+         } else if (system === "F") {
+             //  Convert to C
+              temperature = (5/9 * (temperature - 32)).toPrecision(3);
+              system = "C";
+         }
+
+        //  temperature = toString(temperature);
+         $("#system").html(system);
+         $("#temperature").html(temperature);
+    }
+};
+
 $(document).ready(function() {
     $("#get-weather").on("click", function() {
         getWeather();
     });
+});
+
+$(document).ready(function() {
     $("#temp-toggle").on("click", function() {
         convertTemp();
     })
