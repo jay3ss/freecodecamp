@@ -1,5 +1,4 @@
 function getWeather() {
-
     if (navigator.geolocation) {
         getLocation();
     } else {
@@ -8,7 +7,6 @@ function getWeather() {
         );
     }
 }
-
 
 function getLocation() {
     var location = {
@@ -75,7 +73,6 @@ function displayWeather(weather) {
             weather_display += "</div></div>";
         }
     }
-
 
     $(".weather-display").append(weather_display);
 }
